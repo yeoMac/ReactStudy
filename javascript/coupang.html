@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>쿠팡 UI 개선</title>
+  <style>
+    /* 전체 레이아웃 */
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    /* 네비게이션 바 */
+    .navbar {
+      display: flex;
+      align-items: center;
+      background-color: #f8f8f8;
+      padding: 10px 20px;
+    }
+
+    .menu-item {
+      position: relative;
+      margin: 0 15px;
+      cursor: pointer;
+    }
+
+    .menu-item:hover .dropdown {
+      display: block;
+    }
+
+    /* 드롭다운 박스 */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      padding: 10px;
+      max-width: 500px; /* 드롭다운 최대 너비 설정 */
+      text-align: left; /* 가로 정렬 */
+    }
+
+    .dropdown a {
+      display: inline-block; /* 가로 정렬 */
+      padding: 5px 15px;
+      margin: 5px 10px;
+      text-decoration: none;
+      color: #333;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 5px; /* 모서리를 둥글게 */
+      white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    }
+
+    .dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* 광고 이미지 */
+    .carousel {
+      margin: 20px auto;
+      width: 80%;
+      height: 300px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .carousel img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .carousel img.hidden {
+      opacity: 0;
+    }
+
+    .carousel img.visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- 네비게이션 바 -->
+  <div class="navbar">
+    <div class="menu-item">카테고리
+      <div class="dropdown">
+        <a href="#item1">로켓직구 새해특가</a>
+        <a href="#item2">집에서 즐기는 이자카야</a>
+        <a href="#item3">쿠폰 혜택</a>
+        <a href="#item4">기타 긴 메뉴 텍스트</a>
+      </div>
+    </div>
+    <div class="menu-item">마이쿠팡
+      <div class="dropdown">
+        <a href="#orders">주문목록</a>
+        <a href="#returns">취소/반품</a>
+        <a href="#wishlist">찜 리스트</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 광고 배너 -->
+  <div class="carousel">
+    <img src="https://via.placeholder.com/800x300?text=Sample+Ad+1" class="visible" alt="광고1">
+    <img src="https://via.placeholder.com/800x300?text=Sample+Ad+2" class="hidden" alt="광고2">
+    <img src="https://via.placeholder.com/800x300?text=Sample+Ad+3" class="hidden" alt="광고3">
+  </div>
+
+  <script>
+    // 광고 이미지 전환
+    const images = document.querySelectorAll('.carousel img');
+    let currentIndex = 0;
+
+    function changeImage() {
+      images[currentIndex].classList.remove('visible');
+      images[currentIndex].classList.add('hidden');
+      currentIndex = (currentIndex + 1) % images.length;
+      images[currentIndex].classList.remove('hidden');
+      images[currentIndex].classList.add('visible');
+    }
+
+    setInterval(changeImage, 3000); // 3초마다 이미지 변경
+  </script>
+</body>
+</html>
